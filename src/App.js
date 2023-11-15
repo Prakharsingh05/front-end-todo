@@ -83,15 +83,16 @@ function App() {
 
     handleToDoDelete(index);
   };
-
   return (
     <div className="App">
       <h1>Todo List</h1>
-
+  
       <div className="todo-wrapper">
+        {/* Input section for adding a new todo */}
         <div className="todo-input">
           <div className="todo-input-item">
             <label>Title:</label>
+            {/* Input field for the title of the new todo */}
             <input
               type="text"
               value={newTodoTitle}
@@ -101,6 +102,7 @@ function App() {
           </div>
           <div className="todo-input-item">
             <label>Description:</label>
+            {/* Input field for the description of the new todo */}
             <input
               type="text"
               value={newDescription}
@@ -109,6 +111,7 @@ function App() {
             />
           </div>
           <div className="todo-input-item">
+            {/* Button to add a new todo */}
             <button
               className="primary-btn"
               type="button"
@@ -118,11 +121,11 @@ function App() {
             </button>
           </div>
         </div>
+  
+        {/* Buttons to toggle between pending and completed todos */}
         <div className="btn-area">
           <button
-            className={`secondaryBtn ${
-              isCompletedScreen === false && "active"
-            }`}
+            className={`secondaryBtn ${isCompletedScreen === false && "active"}`}
             onClick={() => setIsCompletedScreen(false)}
           >
             Pending
@@ -134,7 +137,10 @@ function App() {
             Done
           </button>
         </div>
+  
+        {/* Display the list of todos based on the selected screen */}
         <div className="todo-list">
+          {/* Display pending todos */}
           {isCompletedScreen === false &&
             allTodos.map((item, index) => (
               <div className="todo-list-item" key={index}>
@@ -143,11 +149,13 @@ function App() {
                   <p>{item.description}</p>
                 </div>
                 <div>
+                  {/* Button to delete a pending todo */}
                   <AiOutlineDelete
                     title="Delete?"
                     className="icon"
                     onClick={() => handleToDoDelete(index)}
                   />
+                  {/* Button to mark a pending todo as completed */}
                   <BsCheckLg
                     title="Completed?"
                     className=" check-icon"
@@ -156,7 +164,8 @@ function App() {
                 </div>
               </div>
             ))}
-
+  
+          {/* Display completed todos */}
           {isCompletedScreen === true &&
             completedTodos.map((item, index) => (
               <div className="todo-list-item" key={index}>
@@ -165,10 +174,12 @@ function App() {
                   <p>{item.description}</p>
                   <p>
                     {" "}
+                    {/* Display the completion date of the completed todo */}
                     <i>Completed at: {item.completedOn}</i>
                   </p>
                 </div>
                 <div>
+                  {/* Button to delete a completed todo */}
                   <AiOutlineDelete
                     className="icon"
                     onClick={() => handleCompletedTodoDelete(index)}
@@ -180,6 +191,7 @@ function App() {
       </div>
     </div>
   );
+  
 }
 
 export default App;
